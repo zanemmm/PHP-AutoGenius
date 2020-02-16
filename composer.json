@@ -1,0 +1,13 @@
+{
+    "name": "zane/php-auto-genius",
+    "description": "PHP AutoGenius Client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zane",
+            "email": "pi@0php.net"
+        }
+    ],
+    "require": {}
+}
