@@ -27,8 +27,9 @@ class HTTPClient
         $url = "http://{$this->ip}:{$this->port}/" . $this->parseQuery($query);
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec($this->curl);
-        print_r($response);
+        curl_setopt($this->curl, CURLOPT_HEADER, "Accept-Encoding: gb2312");
+        $response = iconv('gb2312', 'utf-8', curl_exec($this->curl));
+        echo ($response) . PHP_EOL;
         $res = json_decode($response, true);
         if ($res) {
             return $res;

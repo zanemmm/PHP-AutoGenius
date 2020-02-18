@@ -51,4 +51,26 @@ class Keyboard
         }
         return false;
     }
+
+    public function getClipboard()
+    {
+        $this->query['action'] = 'get_clipboard';
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+
+        }
+        return false;
+    }
+
+    public function setClipboard(string $text): string
+    {
+        $this->query['action'] = 'set_clipboard';
+        $this->query['text'] = $text;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return true;
+        }
+        return false;
+    }
 }

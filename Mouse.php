@@ -23,6 +23,16 @@ class Mouse
         $this->client = $client;
     }
 
+    public function position(): bool
+    {
+        $this->query['action'] = 'position';
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return true;
+        }
+        return false;
+    }
+
     public function move(int $x, int $y): bool
     {
         $this->query['action'] = 'move';
