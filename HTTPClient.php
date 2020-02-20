@@ -41,6 +41,7 @@ class HTTPClient
     {
         $q = '?';
         foreach ($query as $k => $v) {
+            $v = iconv('utf-8', 'gb2312', $v);
             $q .= rawurlencode($k) . '=' . rawurlencode($v) . '&';
         }
         return $q;

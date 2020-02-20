@@ -45,6 +45,35 @@ class Display
         return false;
     }
 
+    public function findImageFromWindow(int $handle, string $imagePath)
+    {
+        $this->query['action'] = 'find_image_from_window';
+        $this->query['handle'] = $handle;
+        $this->query['image_path'] = $imagePath;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+        }
+        return false;
+    }
+
+    public function findImageFromWindowRect(int $handle, string $imagePath, int $a, int $b, int $c, int $d)
+    {
+        $this->query['action'] = 'find_image_from_window_rect';
+        $this->query['handle'] = $handle;
+        $this->query['image_path'] = $imagePath;
+        $this->query['a'] = $a;
+        $this->query['b'] = $b;
+        $this->query['c'] = $c;
+        $this->query['d'] = $d;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+        }
+        return false;
+    }
+
+
     public function getColorFromScreen(int $x, int $y)
     {
         $this->query['action'] = 'get_color_from_screen';
@@ -76,6 +105,17 @@ class Display
         $this->query['b'] = $b;
         $this->query['c'] = $c;
         $this->query['d'] = $d;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+        }
+        return false;
+    }
+
+    public function getWindowHandleByTitle(string $title)
+    {
+        $this->query['action'] = 'get_window_handle_by_title';
+        $this->query['title'] = $title;
         $res = $this->client->get($this->query);
         if (isset($res['code']) && $res['code'] == 200) {
             return $res['data'];
