@@ -9,5 +9,7 @@
             "email": "pi@0php.net"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-curl": "*"
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Administrator
+ * User: zane
  * Date: 2020/2/16
  * Time: 13:39
  */
@@ -60,6 +60,17 @@ class Mouse
     {
         $this->query['action'] = 'dbclick';
         $this->query['btn'] = $btn;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return true;
+        }
+        return false;
+    }
+
+    public function wheel(int $y)
+    {
+        $this->query['action'] = 'wheel';
+        $this->query['y'] = $y;
         $res = $this->client->get($this->query);
         if (isset($res['code']) && $res['code'] == 200) {
             return true;

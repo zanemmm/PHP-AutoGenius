@@ -19,6 +19,27 @@ class Display
         $this->client = $client;
     }
 
+    public function getScreenSize()
+    {
+        $this->query['action'] = 'get_screen_size';
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+        }
+        return false;
+    }
+
+    public function getWindowRect(int $handle)
+    {
+        $this->query['action'] = 'get_window_rect';
+        $this->query['handle'] = $handle;
+        $res = $this->client->get($this->query);
+        if (isset($res['code']) && $res['code'] == 200) {
+            return $res['data'];
+        }
+        return false;
+    }
+
     public function findImageFromScreen(string $imagePath)
     {
         $this->query['action'] = 'find_image_from_screen';
